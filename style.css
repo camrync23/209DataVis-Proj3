@@ -1,0 +1,14 @@
+#state-checkboxes {
+    max-height: 100px;         /* Limit the height */
+    overflow-y: auto;          /* Make it scrollable */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Split into 4 columns */
+    gap: 5px;                  /* Add spacing between checkboxes */
+    padding: 5px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+  }
+  .checkbox-label {
+    white-space: nowrap;       /* Prevent line wrapping */
+  }
+  

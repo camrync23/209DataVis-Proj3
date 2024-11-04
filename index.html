@@ -1,34 +1,95 @@
 <!DOCTYPE html>
-<html lang="en
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choropleth Map of Causes of Death</title>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <style> 
-        .state {
-            stroke-width: 1px;
-            stroke: #fff;
-            stroke-linejoin: round;
-        }
-        .tooltip {
-            position: absolute;
-            text-align: center;
-            padding: 5px;
-            background: lightsteelblue;
-            border: 1px solid #333;
-            border-radius: 3px;
-            pointer-events: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Cause of Death Visualization</title>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.js"></script>
+  <style>
+    /* Basic styling for the page and chart */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    #chart, #controls {
+      margin: 20px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    #subtitle {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .axis path, .axis line {
+      fill: none;
+      shape-rendering: crispEdges;
+    }
+    .tooltip {
+      position: absolute;
+      text-align: center;
+      padding: 8px;
+      background: #333;
+      color: #fff;
+      border-radius: 4px;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+      font-size: 0.85em;
+      pointer-events: none;
+    }
+    #state-checkboxes-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10px;
+    }
+    #state-checkboxes-label {
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    #state-checkboxes {
+      max-height: 100px;
+      overflow-y: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* Split into 4 columns */
+      gap: 5px;
+      padding: 5px;
+      border: 1px solid #ddd;
+    }
+    .checkbox-label {
+      white-space: nowrap;
+    }
+    #year-range-container {
+      margin-top: 10px;
+    }
+    #year-range {
+      width: 100%;
+      margin: 20px 0;
+    }
+    #cause-label {
+      font-weight: bold; /* Bold styling for the "Cause of Death" title */
+    }
+  </style>
 </head>
 <body>
-    <select id="year-filter"></select>
-    <select id="cause-filter"></select>
-    <svg id="map" width="960" height="500"></svg>
-    <div id="tooltip" style="opacity: 0;">
+  <h1>Cause of Death: Age-Adjusted Death Rates by Year and State</h1>
+  <p id="subtitle">Select a cause of death, one or more states, and a year range to compare trends over time.</p>
+  <div id="controls">
+    <label id="cause-label" for="cause">Select Cause:</label>
+    <select id="cause"></select>
+    
+    <div id="state-checkboxes-container">
+      <label id="state-checkboxes-label">Select States:</label>
+      <div id="state-checkboxes"></div>
     </div>
 
-    <script src="./script.js"></script>
+    <div id="year-range-container">
+      <label id="year-range-label">Select Year Range: <span id="year-start"></span> - <span id="year-end"></span></label>
+      <div id="year-range"></div>
+    </div>
+  </div>
+  <div id="chart"></div>
+  <script src="script.js"></script>
 </body>
 </html>
+
