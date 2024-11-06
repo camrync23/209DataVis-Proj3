@@ -4,8 +4,6 @@
   <meta charset="UTF-8">
   <title>Cause of Death Visualization</title>
   <script src="https://d3js.org/d3.v6.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.js"></script>
   <style>
     /* Basic styling for the page and chart */
     body {
@@ -62,12 +60,17 @@
     #year-range-container {
       margin-top: 10px;
     }
-    #year-range {
+    .year-slider {
       width: 100%;
-      margin: 20px 0;
+      margin: 10px 0;
+    }
+    .slider-label {
+      display: inline-block;
+      width: 50px;
+      text-align: center;
     }
     #cause-label {
-      font-weight: bold; /* Bold styling for the "Cause of Death" title */
+      font-weight: bold;
     }
   </style>
 </head>
@@ -84,12 +87,19 @@
     </div>
 
     <div id="year-range-container">
-      <label id="year-range-label">Select Year Range: <span id="year-start"></span> - <span id="year-end"></span></label>
-      <div id="year-range"></div>
+      <label id="year-range-label">Select Year Range:</label>
+      <div>
+        <input type="range" id="year-start-slider" class="year-slider" />
+        <input type="range" id="year-end-slider" class="year-slider" />
+      </div>
+      <div>
+        <span id="year-start" class="slider-label"></span> - 
+        <span id="year-end" class="slider-label"></span>
+      </div>
     </div>
   </div>
   <div id="chart"></div>
+  
   <script src="script.js"></script>
 </body>
 </html>
-
