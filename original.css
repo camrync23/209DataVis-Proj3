@@ -1,0 +1,190 @@
+#state-checkboxes {
+    max-height: 100px;         /* Limit the height */
+    overflow-y: auto;          /* Make it scrollable */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Split into 4 columns */
+    gap: 5px;                  /* Add spacing between checkboxes */
+    padding: 5px;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+  }
+  .checkbox-label {
+    white-space: nowrap;       /* Prevent line wrapping */
+  }
+  
+  /* Basic styling for the page and chart */
+body {
+  font-family: Arial, sans-serif;
+}
+
+#controls {
+  margin: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#subtitle {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.axis path, .axis line {
+  fill: none;
+  shape-rendering: crispEdges;
+}
+
+.tooltip {
+  position: absolute;
+  text-align: center;
+  padding: 8px;
+  background: #333;
+  color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+  font-size: 0.85em;
+  pointer-events: none;
+}
+
+#state-checkboxes-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  position: relative; /* This allows absolute positioning for buttons */
+}
+
+#state-checkboxes-label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#state-checkboxes {
+  max-height: 100px;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Split into 4 columns */
+  gap: 5px;
+  padding: 5px;
+  border: 1px solid #ddd;
+}
+
+.checkbox-label {
+  white-space: nowrap;
+}
+
+/* Button Styling */
+button {
+  margin-top: 10px;
+  padding: 6px 10px; /* Smaller button size */
+  font-size: 0.8em; /* Smaller text */
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#deselect-all {
+  position: absolute;
+  top: 0; /* Position at the top of the container */
+  right: 8%; /* Move to the left half of the container */
+  margin-top: 0;
+  padding: 4px 8px; /* Smaller padding */
+  font-size: 0.75em; /* Smaller font size */
+}
+
+#select-all {
+  position: absolute;
+  top: 0; /* Position at the top of the container */
+  right: 0; /* Keep it aligned to the right */
+  margin-top: 0;
+  padding: 4px 8px; /* Smaller padding */
+  font-size: 0.75em; /* Smaller font size */
+}
+
+/* Container for the controls (cause and metric dropdowns, year pickers) */
+#controls {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap if needed */
+  justify-content: flex-start; /* Align items to the left */
+  gap: 10px; /* Space between columns (reduce this to bring items closer) */
+  margin-top: 20px;
+}
+
+/* Container for cause and metric dropdowns */
+#cause-metric-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between cause and metric */
+}
+
+/* Container for year pickers */
+#year-pickers-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Space between start and end year pickers */
+  justify-content: flex-start;
+  margin-left: 40px; /* Optional: remove any margin to the left */
+  margin-top: 0; /* Optional: reduce any extra margin on top */
+}
+
+/* Optional: You can also define some additional styling for the dropdowns if needed */
+#cause, #metric, #start-year, #end-year {
+  width: 200px; /* Adjust width to your liking */
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+/* Make sure labels are aligned properly */
+label {
+  font-weight: bold;
+}
+
+/* Container for the chart and the legend */
+#chart-legend-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 20px; /* Space between the chart and the legend */
+  margin-top: 20px;
+}
+
+/* Chart styling (already defined, but you can adjust it) */
+#chart {
+  flex: 1; /* Allow the chart to take up remaining space */
+  height: 500px; /* Adjust chart height as needed */
+}
+
+/* Legend container styling */
+#legend-container {
+  width: 250px; /* Fixed width for the legend (adjust as needed) */
+  margin-top: 0;
+}
+
+/* Legend container styling */
+#legend-container {
+  width: 250px; /* Fixed width for the legend (adjust as needed) */
+  margin-top: 0;
+  /* Added scrollable behavior if content exceeds height */
+  overflow-y: auto; 
+  padding: 5px; /* Optional, if you want some padding */
+}
+
+.legend-item {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.legend-item div {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}

@@ -4,94 +4,67 @@
   <meta charset="UTF-8">
   <title>Cause of Death Visualization</title>
   <script src="https://d3js.org/d3.v6.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.js"></script>
-  <style>
-    /* Basic styling for the page and chart */
-    body {
-      font-family: Arial, sans-serif;
-    }
-    #chart, #controls {
-      margin: 20px;
-    }
-    h1 {
-      font-size: 24px;
-      font-weight: bold;
-    }
-    #subtitle {
-      font-size: 0.9em;
-      color: #666;
-      margin-bottom: 10px;
-    }
-    .axis path, .axis line {
-      fill: none;
-      shape-rendering: crispEdges;
-    }
-    .tooltip {
-      position: absolute;
-      text-align: center;
-      padding: 8px;
-      background: #333;
-      color: #fff;
-      border-radius: 4px;
-      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
-      font-size: 0.85em;
-      pointer-events: none;
-    }
-    #state-checkboxes-container {
-      display: flex;
-      flex-direction: column;
-      margin-top: 10px;
-    }
-    #state-checkboxes-label {
-      margin-bottom: 5px;
-      font-weight: bold;
-    }
-    #state-checkboxes {
-      max-height: 100px;
-      overflow-y: auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr); /* Split into 4 columns */
-      gap: 5px;
-      padding: 5px;
-      border: 1px solid #ddd;
-    }
-    .checkbox-label {
-      white-space: nowrap;
-    }
-    #year-range-container {
-      margin-top: 10px;
-    }
-    #year-range {
-      width: 100%;
-      margin: 20px 0;
-    }
-    #cause-label {
-      font-weight: bold; /* Bold styling for the "Cause of Death" title */
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>Cause of Death: Age-Adjusted Death Rates by Year and State</h1>
   <p id="subtitle">Select a cause of death, one or more states, and a year range to compare trends over time.</p>
+  
   <div id="controls">
-    <label id="cause-label" for="cause">Select Cause:</label>
-    <select id="cause"></select>
-    
-    <div id="state-checkboxes-container">
-      <label id="state-checkboxes-label">Select States:</label>
-      <div id="state-checkboxes"></div>
+    <!-- Cause and Metric dropdowns -->
+    <div id="cause-metric-container">
+      <div>
+        <label for="cause">Select Cause:</label>
+        <select id="cause"></select>
+      </div>
+  
+      <div>
+        <label for="metric">Select Metric:</label>
+        <select id="metric">
+          <option value="Age-adjusted Death Rate">Age-adjusted Death Rate</option>
+          <option value="Deaths">Number of Deaths</option>
+        </select>
+      </div>
     </div>
-
-    <!-- Year Range Dropdowns -->
-    <div id="year-range-container">
-      <label for="start-year">Select Year Range:</label>
-      <select id="start-year"></select>
-      <span>to</span>
-      <select id="end-year"></select>
+  
+    <!-- Year pickers container -->
+    <div id="year-pickers-container">
+      <div>
+        <label for="start-year">Select Start Year:</label>
+        <select id="start-year"></select>
+      </div>
+  
+      <div>
+        <label for="end-year">Select End Year:</label>
+        <select id="end-year"></select>
+      </div>
     </div>
   </div>
+
+  <div id="state-checkboxes-container">
+    <div id="state-checkboxes-buttons">
+      <button id="select-all">Select All</button>
+      <button id="deselect-all">Deselect All</button>
+    </div>
+    
+    <div id="state-checkboxes">
+      <label id="state-checkboxes-label">Select States:</label>
+      <!-- Dynamically generated state checkboxes will appear here -->
+    </div>
+  </div>
+
+  <!-- Chart and Legend Wrapper -->
+  <div id="chart-legend-container">
+  <!-- Chart Section -->
   <div id="chart"></div>
+
+  <!-- Legend Section -->
+  <div id="legend-container">
+    <h3 id="legend-title">State Legend</h3>
+    <div id="legend"></div>
+  </div>
+</div>
+
   <script src="script.js"></script>
 </body>
 </html>
