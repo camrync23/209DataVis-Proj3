@@ -62,22 +62,6 @@ d3.csv(dataFilePath).then(data => {
     checkbox.append("span").text(state);
   });
 
-  // Set up custom year range slider
-  const yearStartSlider = d3.select("#year-start-slider");
-  const yearEndSlider = d3.select("#year-end-slider");
-
-  yearStartSlider.attr("min", years[0])
-                 .attr("max", years[years.length - 1])
-                 .attr("value", years[0]);
-
-  yearEndSlider.attr("min", years[0])
-               .attr("max", years[years.length - 1])
-               .attr("value", years[years.length - 1]);
-
-  // Display the default selected year range
-  d3.select("#year-start").text(years[0]);
-  d3.select("#year-end").text(years[years.length - 1]);
-
   // Initialize the chart with default settings
   updateChart(causes[0], ["United States"], years[0], years[years.length - 1]);
 
@@ -88,17 +72,6 @@ d3.csv(dataFilePath).then(data => {
 
   // Event listener for state checkbox changes
   d3.selectAll(".state-checkbox").on("change", function() {
-    updateChartWithCurrentSettings();
-  });
-
-  // Event listener for year range slider changes
-  yearStartSlider.on("input", function() {
-    d3.select("#year-start").text(yearStartSlider.node().value);
-    updateChartWithCurrentSettings();
-  });
-
-  yearEndSlider.on("input", function() {
-    d3.select("#year-end").text(yearEndSlider.node().value);
     updateChartWithCurrentSettings();
   });
 
@@ -117,8 +90,11 @@ d3.csv(dataFilePath).then(data => {
   function updateChartWithCurrentSettings() {
     const selectedCause = causeSelect.property("value");
     const selectedStates = getSelectedStates();
-    const startYear = +yearStartSlider.node().value;
-    const endYear = +yearEndSlider.node().value;
+    
+    // Default to the full range of available years
+    const startYear = years[0];  // First year in the dataset
+    const endYear = years[years.length - 1];  // Last year in the dataset
+    
     updateChart(selectedCause, selectedStates, startYear, endYear);
   }
 
@@ -131,14 +107,14 @@ d3.csv(dataFilePath).then(data => {
     const groupedData = d3.groups(filteredData, d => d.State); // Group data by state
 
     // Update scales
-    x.domain([new Date(startYear, 0, 1), new Date(endYear, 0, 1)]);
+    x.domain(d3.extent(filteredData, d => d.Year));
     y.domain([0, d3.max(filteredData, d => d["Age-adjusted Death Rate"])]);
 
     // Update axes
-    xAxisGroup.transition().duration(750).call(d3.axisBottom(x).tickFormat(d3.timeFormat("%Y")));
+    xAxisGroup.transition().duration(750).call(d3.axisBottom(x).tickFormat(d3.format("d")));
     yAxisGroup.transition().duration(750).call(d3.axisLeft(y));
 
-    // Draw lines for each selected state
+    // Draw lines for each selected state with thicker lines
     svg.selectAll(".line").remove(); // Clear previous lines
     groupedData.forEach(([state, stateData]) => {
       svg.append("path")
@@ -153,7 +129,7 @@ d3.csv(dataFilePath).then(data => {
         );
     });
 
-    // Add points with tooltips
+    // Add points with tooltips and semi-transparent fill for clarity
     svg.selectAll(".dot").remove();
     svg.selectAll(".dot")
       .data(filteredData)
