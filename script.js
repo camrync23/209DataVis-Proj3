@@ -44,6 +44,7 @@ d3.csv(dataFilePath).then(data => {
 
   // Populate cause dropdown
   const causeSelect = d3.select("#cause");
+  causes.sort();  // This sorts the array of causes in ascending (alphabetical) order
   causes.forEach(cause => causeSelect.append("option").text(cause).attr("value", cause));
 
   // Populate state checkboxes
@@ -62,8 +63,19 @@ d3.csv(dataFilePath).then(data => {
     checkbox.append("span").text(state);
   });
 
+  // Populate year range dropdowns
+  const yearSelectStart = d3.select("#start-year");
+  const yearSelectEnd = d3.select("#end-year");
+
+  years.forEach(year => {
+    yearSelectStart.append("option").text(year).attr("value", year);
+    yearSelectEnd.append("option").text(year).attr("value", year);
+  });
+
   // Initialize the chart with default settings
-  updateChart(causes[0], ["United States"], years[0], years[years.length - 1]);
+  let startYear = years[0];
+  let endYear = years[years.length - 1];
+  updateChart(causes[0], ["United States"], startYear, endYear);
 
   // Event listener for cause dropdown change
   causeSelect.on("change", function() {
@@ -72,6 +84,17 @@ d3.csv(dataFilePath).then(data => {
 
   // Event listener for state checkbox changes
   d3.selectAll(".state-checkbox").on("change", function() {
+    updateChartWithCurrentSettings();
+  });
+
+  // Event listener for year range dropdown changes
+  yearSelectStart.on("change", function() {
+    startYear = +this.value;
+    updateChartWithCurrentSettings();
+  });
+
+  yearSelectEnd.on("change", function() {
+    endYear = +this.value;
     updateChartWithCurrentSettings();
   });
 
@@ -91,10 +114,10 @@ d3.csv(dataFilePath).then(data => {
     const selectedCause = causeSelect.property("value");
     const selectedStates = getSelectedStates();
     
-    // Default to the full range of available years
-    const startYear = years[0];  // First year in the dataset
-    const endYear = years[years.length - 1];  // Last year in the dataset
-    
+    // Get selected start and end year from dropdowns
+    const startYear = +yearSelectStart.property("value");
+    const endYear = +yearSelectEnd.property("value");
+
     updateChart(selectedCause, selectedStates, startYear, endYear);
   }
 
