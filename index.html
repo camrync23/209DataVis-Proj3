@@ -5,10 +5,25 @@
   <title>Cause of Death Visualization</title>
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <link rel="stylesheet" href="style.css" />
+  <style> 
+    .state {
+        stroke-width: 1px;;
+        stroke-linejoin: round;
+    }
+    .tooltip {
+        position: absolute;
+        text-align: center;
+        padding: 5px;
+        background: lightsteelblue;
+        border: 1px solid #333;
+        border-radius: 3px;
+        pointer-events: none;
+    }
+</style>
 </head>
 <body>
-  <h1>Cause of Death: Age-Adjusted Death Rates by Year and State</h1>
-  <p id="subtitle">Select a cause of death, one or more states, and a year range to compare trends over time.</p>
+  <h1>Visualizing Cause of Death: How Have Causes of Death Evolved Over Time Across the United States? </h1>
+  <p id="subtitle">Select a cause of death, states, and a year range to see how trends vary across regions and time. Death rates can be viewed as total deaths or age-adjusted death rate by selecting the desired metric below.</p>
   
   <div id="controls">
     <!-- Cause and Metric dropdowns -->
@@ -62,6 +77,20 @@
   <div id="legend-container">
     <h3 id="legend-title">State Legend</h3>
     <div id="legend"></div>
+  </div>
+</div>
+
+<!-- Additional Information Section -->
+<div id="info-container">
+  <div id = "info-box">
+  <h3>Data Source</h3>
+  <p id="data-source-info">
+    The data used in this visualization comes from the U.S. Department of Health and Human Services, which tracks death rates across the U.S based on all filed resident death certificates. The dataset includes cause-of-death information, along with demographic breakdowns by state and year.
+  </p>
+  <h3>Interpretation of Age-Adjusted Death</h3>
+  <p id="interpretation-info">
+    Age-adjusted death rates account for differences in age distribution between populations, allowing for more accurate comparisons of mortality rates across different states and over time. This metric standardizes death rates to the age distribution of a "standard population," (e.g., the 2000 U.S. population for years 1999-2010, and the 2010 U.S. population for years 2010-2017), to eliminate the influence of age differences in the population.
+  </p>
   </div>
 </div>
 
