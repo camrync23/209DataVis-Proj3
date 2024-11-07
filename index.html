@@ -23,7 +23,7 @@
 </head>
 <body>
   <h1>Visualizing Cause of Death: How Have Causes of Death Evolved Over Time Across the United States? </h1>
-  <p id="subtitle">Select a cause of death, states, and a year range to see how trends vary across regions and time. Death rates can be viewed as total deaths or age-adjusted death rate by selecting the desired metric below.</p>
+  <p id="subtitle">Select a cause of death, states, and a year range to see how trends vary across regions and time. See the tips below for more details on how to interpret and interact with the visualization.</p>
   
   <div id="controls">
     <!-- Cause and Metric dropdowns -->
@@ -89,7 +89,18 @@
   </p>
   <h3>Interpretation of Age-Adjusted Death</h3>
   <p id="interpretation-info">
-    Age-adjusted death rates account for differences in age distribution between populations, allowing for more accurate comparisons of mortality rates across different states and over time. This metric standardizes death rates to the age distribution of a "standard population," (e.g., the 2000 U.S. population for years 1999-2010, and the 2010 U.S. population for years 2010-2017), to eliminate the influence of age differences in the population.
+    Age-adjusted death rates account for differences in age distribution between populations, allowing for more accurate comparisons of mortality rates across different states and over time. This metric standardizes death rates to the age distribution of a "standard population," (e.g., the 2000 U.S. population for years 1999-2010, and the 2010 U.S. population for years 2010-2017), to eliminate the influence of age differences in the population. In contrast, the number of deaths directly represents the number of deaths in a given year and for a given cause, regardless of age.
+  </p>
+  <h3>Tips for Using the Visualization</h3>
+  <p id="tips-section">
+    <ul>
+      <li><strong>Select a Cause:</strong> Choose the cause of death from the dropdown to view trends for specific diseases or conditions.</li>
+      <li><strong>Filter by State:</strong> Use the checkboxes to select one or more states to compare the trends across different regions. We suggest picking a maximum of ten at time</li>
+      <li><strong>Adjust the Time Range:</strong> Select the start and end years to narrow down the data to a specific time period for a more detailed comparison.</li>
+      <li><strong>Switch Metrics:</strong> Choose between "Age-adjusted Death Rate" and "Number of Deaths" to view the data from different perspectives. See the interpretation section for more details on the difference between these metrics.</li>
+      <li><strong>Hover for Details:</strong> Hover over the chart points to see specific data for each year, state, and metric, along with a tooltip with detailed information.</li>
+      <li><strong>Highlight a Line:</strong> Click on a state’s name in the legend to highlight that state’s data and compare it to others more clearly.</li>
+    </ul>
   </p>
   </div>
 </div>
