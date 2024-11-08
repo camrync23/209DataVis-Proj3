@@ -3,41 +3,38 @@ Interactive Data Visualization for Leading Causes of Death
 
 # Cause of Death Visualization
 
-This visualization addresses the question, **"How have causes of death evolved over time across the United States?"** The dataset includes the year of death, type and cause of death, state, number of deaths, and the age-adjusted death rate. Using D3.js, we created an interactive line graph to allow users to explore trends in causes of death across states and over time.
+This visualization explores the question, *"How have causes of death evolved over time across the United States?"* The dataset includes the year, cause of death, state, number of deaths, and the age-adjusted death rate. Using D3.js, we created an interactive line graph that enables users to examine trends in causes of death across states and over time.
 
 ## Project Overview
 
-The goal of this project was to visualize how causes of death have changed across U.S. states over a specific period. We initially experimented with different design ideas, including a choropleth map, but eventually decided that a line graph was the best fit for showing changes over time. The final visualization allows users to filter data by cause of death, state, and time range, providing a clear view of trends in mortality.
+Our objective was to design an interactive graphic addressing a compelling question using a dataset of our choice. We selected data from the U.S. Department of Health and Human Services, which tracks death rates across the U.S. based on resident death certificates. The dataset includes cause-of-death information along with demographic breakdowns by state and year.
+
+After selecting our dataset, we explored various designs, including stacked bar charts and a choropleth map, but ultimately chose a line graph as the best fit for visualizing changes over time. The final visualization allows users to filter data by cause of death, state, and time range, providing a clear view of mortality trends.
 
 ## Rationale for Design Decisions
 
-At the outset, we considered various design ideas, such as a choropleth map to display the geographic distribution of deaths by state. However, we encountered challenges in integrating interactive features like filters with the map, limiting our ability to analyze trends over time. Given our primary goal of visualizing changes in causes of death over multiple years, we determined that a line graph would be the most effective approach, allowing users to see trends clearly.
+While considering design options, we initially experimented with a choropleth map to display the geographic distribution of deaths by state. However, we encountered challenges in adding interactive features, such as filters, which limited the map’s effectiveness in analyzing trends over time. Given our goal of visualizing changes in causes of death over multiple years, we determined that a line graph would be the most effective approach, allowing users to clearly observe trends.
 
-For visual encodings, we used color and line thickness to distinguish between states, making it easier to identify individual trends without overwhelming the viewer. We chose dropdowns and checkboxes as interaction techniques for their intuitive nature, allowing users to easily select specific states and causes of death to compare.
-
-## Alternatives Considered and Ultimate Choices
-
-Initially, we considered a choropleth map but moved to line graphs to enhance time trend analysis. Within the line graph approach, we tried displaying all states simultaneously, but it was too visually overwhelming. This led us to add filters, beginning with a single-state filter and later expanding to a multi-state filter for better cross-state comparison. 
-
-For selecting the time range, we initially wanted a slider to adjust the date range but ultimately used dropdown menus due to challenges in implementing a slider in D3.js. Dropdowns provided a simple way to control the time range while maintaining functionality.
+For visual encoding, we used color to distinguish between states, making it easier for viewers to identify individual trends. The filters enable users to explore various causes of death across different states. Users can filter by cause of death, choose between age-adjusted death rate and number of deaths, and select a time range using drop-down menus. A state selection filter allows users to compare multiple states, with each state’s color-coded legend appearing in the “State Legend” column on the right for easy reference. We chose drop-downs and checkboxes as interaction techniques for their intuitive design, allowing users to easily select specific states and causes of death. When at least one state is selected, tooltips appear upon hovering over a data point, providing the year, metric value, and state for enhanced context.
 
 ## Development Process
 
-Our development process started with formulating our research question, which guided our selection of visualization features and filters. Initially, we experimented with various plotting libraries, including Plotly and Altair, before transitioning to D3.js for its flexibility. Adapting code from other libraries to D3.js was challenging due to differences in library structures.
+Our development process began with formulating our research question, which guided our choice of visualization features and filters. Once we settled on the line graph approach, we initially displayed all states simultaneously, but this approach was visually overwhelming. To improve clarity, we introduced filters, beginning with a single-state filter and later expanding to multi-state selection to support cross-state comparisons.
 
-### Work Distribution
+For selecting the time range, we initially aimed to use a slider but switched to drop-down menus due to implementation challenges in D3.js. Drop-downs allowed us to control the time range while maintaining usability.
 
-This project was a collaborative effort between two group members:
-- **Camryn** initial design, addition of filters, and enhancing CSS for visual appeal.
-- **Allison** initial design, addition of filters, and the write-up.
+For the state selection, we initially used a single-column drop-down checkbox, but this layout made it cumbersome to scroll through states. To enhance ease of use, we switched to a four-column layout.
 
-Each member spent about two hours exploring visualization options before settling on a direction. The total development time is estimated to be around 20 hours, with the most time-consuming tasks involving converting code to D3.js and implementing the year filter.
+After creating the visualization, we added a brief explanation of the age-adjusted death metric and usage tips below the graphic to improve user understanding.
 
-This project provided valuable insights into D3.js and effective ways to create interactive visualizations, ultimately leading to a tool that allows users to explore how causes of death have changed over time across the U.S.
+## Work Distribution
 
-## Challenges and Insights
+This project was a collaborative effort between two team members:
 
-The most significant challenges were adapting code from other libraries to D3.js and implementing the time filter. Initially, we wanted a toggle slider for selecting the time range, but we encountered difficulties achieving this in D3.js and opted for dropdown selectors. These challenges ultimately helped us better understand D3.js and enhance our technical skills in data visualization.
+- **Camryn** focused on initial design, filter additions, and CSS enhancements for visual appeal.
+- **Allison** contributed to the initial design, filter additions, and project write-up.
+
+Each team member spent approximately two hours exploring visualization options before deciding on a direction. After finalizing the design, each member invested an additional four hours refining the filters, tool layout, and debugging the code. The total development time was around 12 hours, with the most time-intensive tasks involving D3.js setup for multi-filter handling and debugging.
 
 ---
 
