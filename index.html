@@ -1,32 +1,110 @@
 <!DOCTYPE html>
-<html lang="en"
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Choropleth Map of Causes of Death</title>
-    <script src="https://d3js.org/d3.v5.min.js"></script>
-    <style> 
-        .state {
-            stroke-width: 1px;;
-            stroke-linejoin: round;
-        }
-        .tooltip {
-            position: absolute;
-            text-align: center;
-            padding: 5px;
-            background: lightsteelblue;
-            border: 1px solid #333;
-            border-radius: 3px;
-            pointer-events: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Cause of Death Visualization</title>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+  <style> 
+    .state {
+        stroke-width: 1px;;
+        stroke-linejoin: round;
+    }
+    .tooltip {
+        position: absolute;
+        text-align: center;
+        padding: 5px;
+        background: lightsteelblue;
+        border: 1px solid #333;
+        border-radius: 3px;
+        pointer-events: none;
+    }
+</style>
 </head>
 <body>
-    <select id="year-filter"></select>
-    <select id="cause-filter"></select>
-    <svg id="map" width="960" height="500"></svg>
-    <div id="tooltip" style="position: absolute; visibility: hidden; background: white; border: 1px solid #ccc; padding: 5px;"></div>
+  <h1>Visualizing Cause of Death: How Have Causes of Death Evolved Over Time Across the United States? </h1>
+  <p id="subtitle">Select a cause of death, states, and a year range to see how trends vary across regions and time. See the tips below for more details on how to interpret and interact with the visualization.</p>
+  
+  <div id="controls">
+    <!-- Cause and Metric dropdowns -->
+    <div id="cause-metric-container">
+      <div>
+        <label for="cause">Select Cause:</label>
+        <select id="cause"></select>
+      </div>
+  
+      <div>
+        <label for="metric">Select Metric:</label>
+        <select id="metric">
+          <option value="Age-adjusted Death Rate">Age-adjusted Death Rate</option>
+          <option value="Deaths">Number of Deaths</option>
+        </select>
+      </div>
+    </div>
+  
+    <!-- Year pickers container -->
+    <div id="year-pickers-container">
+      <div>
+        <label for="start-year">Select Start Year:</label>
+        <select id="start-year"></select>
+      </div>
+  
+      <div>
+        <label for="end-year">Select End Year:</label>
+        <select id="end-year"></select>
+      </div>
+    </div>
+  </div>
 
-    <script src="./script.js"></script>
+  <div id="state-checkboxes-container">
+    <div id="state-checkboxes-buttons">
+      <button id="select-all">Select All</button>
+      <button id="deselect-all">Deselect All</button>
+    </div>
+    
+    <div id="state-checkboxes">
+      <label id="state-checkboxes-label">Select States:</label>
+      <!-- Dynamically generated state checkboxes will appear here -->
+    </div>
+  </div>
+
+  <!-- Chart and Legend Wrapper -->
+  <div id="chart-legend-container">
+  <!-- Chart Section -->
+  <div id="chart"></div>
+
+  <!-- Legend Section -->
+  <div id="legend-container">
+    <h3 id="legend-title">State Legend</h3>
+    <div id="legend"></div>
+  </div>
+</div>
+
+<!-- Additional Information Section -->
+<div id="info-container">
+  <div id = "info-box">
+  <h3>Data Source</h3>
+  <p id="data-source-info">
+    The data used in this visualization comes from the U.S. Department of Health and Human Services, which tracks death rates across the U.S based on all filed resident death certificates. The dataset includes cause-of-death information, along with demographic breakdowns by state and year.
+  </p>
+  <h3>Interpretation of Age-Adjusted Death</h3>
+  <p id="interpretation-info">
+    Age-adjusted death rates account for differences in age distribution between populations, allowing for more accurate comparisons of mortality rates across different states and over time. This metric standardizes death rates to the age distribution of a "standard population," (e.g., the 2000 U.S. population for years 1999-2010, and the 2010 U.S. population for years 2010-2017), to eliminate the influence of age differences in the population. In contrast, the number of deaths directly represents the number of deaths in a given year and for a given cause, regardless of age.
+  </p>
+  <h3>Tips for Using the Visualization</h3>
+  <p id="tips-section">
+    <ul>
+      <li><strong>Select a Cause:</strong> Choose the cause of death from the dropdown to view trends for specific diseases or conditions.</li>
+      <li><strong>Filter by State:</strong> Use the checkboxes to select one or more states to compare the trends across different regions. We suggest picking a maximum of ten at time</li>
+      <li><strong>Adjust the Time Range:</strong> Select the start and end years to narrow down the data to a specific time period for a more detailed comparison.</li>
+      <li><strong>Switch Metrics:</strong> Choose between "Age-adjusted Death Rate" and "Number of Deaths" to view the data from different perspectives. See the interpretation section for more details on the difference between these metrics.</li>
+      <li><strong>Hover for Details:</strong> Hover over the chart points to see specific data for each year, state, and metric, along with a tooltip with detailed information.</li>
+      <li><strong>Highlight a Line:</strong> Click on a state’s name in the legend to highlight that state’s data and compare it to others more clearly.</li>
+    </ul>
+  </p>
+  </div>
+</div>
+
+  <script src="script.js"></script>
 </body>
 </html>
