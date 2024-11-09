@@ -1,4 +1,4 @@
-# 209DataVis-Proj3
+# 209 Data Visualization Project 3
 Interactive Data Visualization for Leading Causes of Death 
 
 # Cause of Death Visualization
@@ -31,10 +31,10 @@ After creating the visualization, we added a brief explanation of the age-adjust
 
 This project was a collaborative effort between two team members:
 
-- **Camryn** focused on initial design, filter additions, and CSS enhancements for visual appeal.
+- **Camryn** focused on initial design, filter additions, debugging code, and CSS enhancements for visual appeal.
 - **Allison** contributed to the initial design, filter additions, and project write-up.
 
-Each team member spent approximately two hours exploring visualization options before deciding on a direction. After finalizing the design, each member invested an additional four hours refining the filters, tool layout, and debugging the code. The total development time was around 12 hours, with the most time-intensive tasks involving D3.js setup for multi-filter handling and debugging.
+Each team member spent approximately two hours exploring visualization options before deciding on a direction. After finalizing the design, each member invested an additional six hours refining the filters, tool layout, and debugging the code. The total development time was around 16 hours, with the most time-intensive tasks involving D3.js setup for multi-filter handling and debugging.
 
 ---
 
